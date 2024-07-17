@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <h5 class="card-header">Vencimiento de PNOs</h5>
+    <div class="card-body">
+        <h5 class="card-title">Upload File</h5>
+        <div class="row">
+            <div class="col-auto">
+                <input type="file" class="form-control" id="txtPno_vencimiento_file" name="name" value="" />
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-icon btn-success btn-left" id="btnPno_vencimiento_file_save"><i class="fa fa-file-upload"></i> Upload</button>
+            </div>
+        </div>
+        <hr />
+        <h5 class="card-title">Information Filter</h5>
+        <div class="row" id="frm_Pno_vencimiento">
+            <div class="form-group col-auto">
+                <label for="txtPno_vencimiento_cwid" class="form-label">CWID</label>
+                <input type="text" class="form-control" id="txtPno_vencimiento_cwid" placeholder="Enter CWID">
+            </div>
+
+            <div class="form-group col-auto" style="margin-top: 23px">
+                <button type="button" class="btn btn-icon btn-primary btn-left" id="btnPno_vencimiento_Search"><i class="fa fa-search"></i> Search</button>
+                <button type="button" class="btn btn-icon btn-outline-secondary btn-left" id="btnPno_vencimiento_clean"><i class="fa fa-eraser"></i> Clean Filters</button>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div style="max-height:500px; overflow:auto">
+                <table class="table" id="tblPno_vencimiento">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">CWID</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Fisrt Name</th>
+                            <th scope="col">Super Last Name</th>
+                            <th scope="col">Super Fisrt Name</th>
+                            <th scope="col">Item ID</th>
+                            <th scope="col">Requiered</th>
+                            <th scope="col">Department</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider text-center">
+                        <tr><td colspan="100%"><p class="text-center">No records found</p></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="pgdPno_vencimiento">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info" data-paginado="Anterior"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
+                    <div class="btn-group">
+                        <select class="form-control text-center" style="width:80px !important" data-paginado="Paginas">
+                            <option selected disabled value="-1">Página</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-info" data-paginado="Siguiente"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>require(['Pno_vencimiento']);</script>

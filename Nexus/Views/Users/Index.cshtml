@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="section">
+    <div class="section-header">
+        <h5>Adm. Usuarios</h5>
+    </div>
+    <div class="section-body">
+        <div class="card card-primary">
+            <div class="card-body">
+                <div class="row" id="frm_Users">
+                    <div class="form-group col-auto">
+                        <label for="txtUsers_cwid" class="form-label">CWID</label>
+                        <input type="text" class="form-control form-control-sm" id="txtUsers_cwid" placeholder="Ingrese CWID">
+                    </div>
+                    <div class="form-group col-auto">
+                        <label for="txtUsers_fullname" class="form-label">Nombre</label>
+                        <input type="text" class="form-control form-control-sm" id="txtUsers_fullname" placeholder="Ingrese nombre o apellido">
+                    </div>
+                    <div class="form-group col-auto">
+                        <label for="slcUsers_department" class="form-label">Departamento</label>
+                        <select id="slcUsers_department" class="form-control form-control-sm">
+                            <option value="-1">Seleccione</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-auto">
+                        <label for="slcUsers_is_enable" class="form-label">Estatus</label>
+                        <select id="slcUsers_is_enable" class="form-control form-control-sm">
+                            <option value="1" selected>Activo</option>
+                            <option value="0">Inactivo</option>
+                            <option value="-1">Todos</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-auto offset" style="margin-top: 2rem;">
+                        <button type="button" class="btn btn-icon btn-sm btn-primary btn-left" id="btnUsers_Search"><i class="fa fa-search"></i> Buscar</button>
+                        <button type="button" class="btn btn-icon btn-sm btn-outline-secondary btn-left" id="btnUsers_clean"><i class="fa fa-eraser"></i> Limpiar Filtro</button>
+                        <button type="button" class="btn btn-icon btn-sm btn-outline-success btn-left" id="btnUsers_add"><i class="fa fa-plus"></i> Agregar Usuario</button>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div style="max-height:18rem; overflow:auto">
+                        <table class="table table-sm table-hover table-responsive-sm" id="tblUsers">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">CWID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Correo</th>
+                                    <th scope="col">Departamento</th>
+                                    <th scope="col">Titulo</th>
+                                    <th scope="col">Estatus</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider text-center">
+                                <tr><td colspan="100%"><p class="text-center">No records found</p></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="pgdUsers">
+                        <div class="btn-group-sm">
+                            <button type="button" class="btn btn-sm btn-info" data-paginado="Anterior"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
+                            <div class="btn-group">
+                                <select class="form-control form-control-sm text-center" style="width:80px !important" data-paginado="Paginas">
+                                    <option selected disabled value="-1">Página</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-info" data-paginado="Siguiente"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<script>require(['Users']);</script>

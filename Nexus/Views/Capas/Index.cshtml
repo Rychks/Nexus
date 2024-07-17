@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <h5 class="card-header">CaPa</h5>
+    <div class="card-body">
+        <h5 class="card-title">Upload File</h5>
+        <div class="row">
+            <div class="col-auto">
+                <input type="file" class="form-control" id="txtCapas_file" name="name" value="" />
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-icon btn-success btn-left" id="btnCapas_file_save"><i class="fa fa-file-upload"></i> Upload</button>
+            </div>
+        </div>
+        <hr />
+        <h5 class="card-title">Information Filter</h5>
+        <div class="row" id="frm_Capas">
+            <div class="form-group col-auto">
+                <label for="txtCapas_number" class="form-label">CaPa Number</label>
+                <input type="text" class="form-control" id="txtCapas_number" placeholder="Enter Capa number">
+            </div>
+            
+            <div class="form-group col-auto" style="margin-top: 23px">
+                <button type="button" class="btn btn-icon btn-primary btn-left" id="btnCapas_Search"><i class="fa fa-search"></i> Search</button>
+                <button type="button" class="btn btn-icon btn-outline-secondary btn-left" id="btnCapas_clean"><i class="fa fa-eraser"></i> Clean Filters</button>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div style="max-height:500px; overflow:auto">
+                <table class="table" id="tblCapas">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Number</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">Entry date (CET)</th>
+                            <th scope="col">Short description</th>
+                            <th scope="col">Client</th>
+                            <th scope="col">Deadline for final approval</th>
+                            <th scope="col">Workflow status</th>
+                            <th scope="col">Success</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider text-center">
+                        <tr><td colspan="100%"><p class="text-center">No records found</p></td></tr>
+                    </tbody>
+                </table>
+            </div>
+           
+            <div id="pgdCapas">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info" data-paginado="Anterior"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
+                    <div class="btn-group">
+                        <select class="form-control text-center" style="width:80px !important" data-paginado="Paginas">
+                            <option selected disabled value="-1">Página</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-info" data-paginado="Siguiente"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>require(['Capas']);</script>

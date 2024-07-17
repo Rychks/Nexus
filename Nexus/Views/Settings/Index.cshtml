@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="section">
+    <div class="section-header">
+        <h4>Ajustes</h4>
+    </div>
+    <div class="section-body">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="row" id="frm_Settings">
+                            <div class="form-group col-auto">
+                                <label for="slcSettings_department" class="form-label">Departamento</label>
+                                <select id="slcSettings_department" class="form-control form-control-sm">
+                                    <option value="-1">Seleccione</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-auto">
+                                <label for="txtSettings_title" class="form-label">Titulo</label>
+                                <input type="text" class="form-control form-control-sm" id="txtSettings_title" placeholder="Ingrese el titulo del dashboard">
+                            </div>
+                            <div class="form-group col-auto">
+                                <label for="slcSettings_dashboard_type" class="form-label">Tipo de Dashboard</label>
+                                <select id="slcSettings_dashboard_type" class="form-control form-control-sm">
+                                    <option value="-1">Seleccione</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-auto offset" style="margin-top: 2rem;">
+                                <button type="button" class="btn btn-icon btn-sm btn-primary btn-left" id="btnSettings_Search"><i class="fa fa-search"></i> Buscar</button>
+                                <button type="button" class="btn btn-icon btn-sm btn-outline-secondary btn-left" id="btnSettings_clean"><i class="fa fa-eraser"></i> Limpiar Filtro</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mis Dashboards</label>
+                        <div class="row gutters-sm" id="pnlSettings_dashboard">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>require(['Settings']);</script>

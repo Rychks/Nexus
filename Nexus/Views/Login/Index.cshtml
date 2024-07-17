@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Login/_Login.cshtml";
+}
+
+<div class="login-brand">
+    <img src="~/Assets/Bayer_Brand/Bayer-Logo2.png" alt="logo" style="display:none" width="100" class="shadow-light rounded-circle">
+</div>
+
+<div class="col-sm-4 offset-4">
+    <div class="card">
+        <img src="~/Assets/Bayer_Brand/Bayer-Logo.png" class="mx-auto d-block" height="170" width="170" alt="Alternate Text" />
+        <div class="card-body" style="margin-top:50px">
+            <form method="post" action="@Url.Action("IniciarSesion", "Login")" id="frmLogin_Login">
+                <div class="form-group">
+                    <label for="btnLogin_BYTOST" style="font-weight:bold">Cwid</label>
+                    <input id="btnLogin_BYTOST" name="BYTOST" type="text" class="form-control text-center" tabindex="1" autocomplete="off" autofocus placeholder="Enter CWID">
+                </div>
+                <div class="form-group">
+                    <label for="txtLogin_ZNACKA" style="font-weight:bold" class="control-label">Password</label>
+                    <input id="txtLogin_ZNACKA" name="ZNACKA" type="password" class="form-control text-center" tabindex="2" placeholder="Enter password">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info btn-lg btn-block" tabindex="3" id="btnLogin_Entrar">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="simple-footer">Copyright &copy; @DateTime.Now.Year  All rights reserved. Bayer S.A. de C.V. CH Eng. Americas</div>
+</div>

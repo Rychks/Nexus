@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="section">
+    <div class="section-header">
+        <h5>Adm. Dashboards</h5>
+    </div>
+    <div class="section-body">
+        <div class="card card-primary">
+            <div class="card-body">
+                <div class="row" id="frm_Dashboards">
+                    <div class="form-group col-auto">
+                        <label for="slcDasboard_department" class="form-label">Departamento</label>
+                        <select id="slcDasboard_department" class="form-control form-control-sm">
+                            <option value="-1">Seleccione</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-auto">
+                        <label for="txtDashboard_title" class="form-label">Titulo</label>
+                        <input type="text" class="form-control form-control-sm" id="txtDashboard_title" placeholder="Ingrese el titulo del dashboard">
+                    </div>
+                    <div class="form-group col-auto">
+                        <label for="slcDashboard_dashboar_type" class="form-label">Tipo de Dashboard</label>
+                        <select id="slcDashboard_dashboar_type" class="form-control form-control-sm">
+                            <option value="-1">Seleccione</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-auto">
+                        <label for="slcDashboard_is_enable" class="form-label">Estatus</label>
+                        <select id="slcDashboard_is_enable" class="form-control form-control-sm">
+                            <option value="-1">Todos</option>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-auto offset" style="margin-top: 2rem;">
+                        <button type="button" class="btn btn-icon btn-sm btn-primary btn-left" id="btnDashboards_Search"><i class="fa fa-search"></i> Buscar</button>
+                        <button type="button" class="btn btn-icon btn-sm btn-outline-secondary btn-left" id="btnDashboards_clean"><i class="fa fa-eraser"></i> Limpiar Filtro</button>
+                        <button type="button" class="btn btn-icon btn-sm btn-outline-success btn-left" id="btnDashboard_add"><i class="fa fa-plus"></i> Agregar Dashboard</button>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div style="max-height:18rem; overflow:auto">
+                        <table class="table table-sm table-hover table-responsive-sm" id="tblDashboards">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Titulo</th>
+                                    <th scope="col">Tipo de Dashboard</th>
+                                    <th scope="col">Estatus</th>
+                                    <th scope="col">Registro TimeStamp</th>
+                                    <th scope="col">Ultima Actualización</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider text-center">
+                                <tr><td colspan="100%"><p class="text-center">No records found</p></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="pgdDashboards">
+                        <div class="btn-group-sm">
+                            <button type="button" class="btn btn-sm btn-info" data-paginado="Anterior"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
+                            <div class="btn-group">
+                                <select class="form-control form-control-sm text-center" style="width:80px !important" data-paginado="Paginas">
+                                    <option selected disabled value="-1">Página</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-info" data-paginado="Siguiente"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+<!--MODAL UPSERT-->
+<div class="modal fade" id="mdlDashboards_Upsert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="mdlDashboards_Upsert">Modal title</h1>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid" id="frmDashboards_upsert">
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="txtDashboard_upsert_titulo">Titulo</label>
+                                <input type="text" class="form-control form-control-sm" id="txtDashboard_upsert_titulo" name="name" value="" placeholder="Ingrese un titulo" />
+                                <input type="text" class="form-control-sm" id="txtDashboard_upsert_id" readonly disabled style="display:none;" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="txtDashboard_upsert_id_dashboard_tipo">Tipo de Dashboard</label>
+                            <select class="form-control form-control-sm" id="txtDashboard_upsert_id_dashboard_tipo">
+                                <option value="-1">Seleccione</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="txtDashboard_upsert_id_departamento">Departamento</label>
+                            <select class="form-control form-control-sm" id="txtDashboard_upsert_id_departamento">
+                                <option value="-1">Seleccione</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="txtDashboard_upsert_code_department">Código de departamento</label>
+                            <input type="text" class="form-control form-control-sm" id="txtDashboard_upsert_code_department" placeholder="Ingrese in código de departamento" name="name" value="" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="txtDashboard_upsert_is_enable">Estatus</label>
+                            <select class="form-control form-control-sm" id="txtDashboard_upsert_is_enable">
+                                <option value="-1">Seleccione</option>
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </div>
+                        <div class="col-md-9">
+                            <label for="txtDashboard_upsert_link">Link</label>
+                            <input type="text" class="form-control form-control-sm" id="txtDashboard_upsert_link" name="name" placeholder="Ingrese un link" value="" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-5">
+                            <label>Seleccione una imagen</label>
+                            <input type="file" class="form-control form-control-sm" id="txtDashboard_upsert_img" />
+                        </div>
+                        <div class="col-md-7">
+                            <img src="" id="txtDashboard_upsert_img_preview" height="200" style="border-style: solid; border-width: 1px; border-color: dark; border-radius: 5px; padding:10px; box-shadow: 5px 10px lightgray; cursor: pointer;" class="rounded img-fluid"  alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-sm btn-success" id="btnDashboard_upsert_save">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>require(['Dashboards']);</script>

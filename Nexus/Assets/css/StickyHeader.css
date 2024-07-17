@@ -1,0 +1,24 @@
+﻿body {
+   
+
+}
+input, select, textarea{
+    max-width: 100% !important;
+}
+thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    align-content: center;
+    text-align: center;
+    background-color: #E7E6E6;
+}
+.btn-progress {
+    color: transparent !important;
+    position: relative;
+    background-image: url("../img/spinner-white.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    font-size: 0px !important;
+    background-size: 30px;
+}

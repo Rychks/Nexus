@@ -1,0 +1,161 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Nexus.Clases.Users users = new Nexus.Clases.Users();
+    string User = users.get_user_fullname(HttpContext.Current.User.Identity.Name);
+    string Department = users.get_user_department_code(HttpContext.Current.User.Identity.Name);
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 10px;
+        padding: 0;
+        background: white;
+        overflow-y: visible;
+        overflow-x: hidden;
+    }
+    welcome-container {
+        opacity: 0;
+        animation: fadeIn 3s forwards;
+        animation-delay: 1s;
+        background-color: rgba(255, 255, 255, 0);
+        padding: 1px;
+        text-align: left;
+        margin: 20px 5px;
+    }
+
+    .welcome {
+        font-size: 50px !important;
+        font-weight: bold;
+        margin: 0;
+        color: rgb(0, 0, 0);
+    }
+    .banner-dashboard:hover {
+        transition: visibility 0s, opacity 0.5s linear;
+    }
+    .banner-dashboard {
+        visibility: hidden;
+        background-color: black;
+        opacity: 0;
+    }
+    .banner-dashboard:hover{
+            visibility: visible;
+            opacity: 0.3;
+        }
+    .title-banner {
+        color: white;
+        font-weight: bold;
+    }
+</style>
+<div class="section">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-primary">
+                    <i class="far fa-user"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Admin</h4>
+                    </div>
+                    <div class="card-body">
+                        10
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-danger">
+                    <i class="far fa-newspaper"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>News</h4>
+                    </div>
+                    <div class="card-body">
+                        42
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-warning">
+                    <i class="far fa-file"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Reports</h4>
+                    </div>
+                    <div class="card-body">
+                        1,201
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-success">
+                    <i class="fas fa-circle"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Online Users</h4>
+                    </div>
+                    <div class="card-body">
+                        47
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <div class="row col-lg-12 welcome">
+                    <h1 style="z-index:1">Bienvenido</h1>
+                </div>
+            </div>
+            <div class="card-body">
+                <input type="text" style="display:none" readonly id="id_department" value="@Department" />
+                <div class="text-center banner-dashboard">
+                    <div>
+                        <label class="title-banner">Titulo</label>
+                    </div>
+                </div>
+                <div class="row" style="transform: scale(1.2);margin-top:-2.5rem!important;z-index:-1;">
+                    <iframe title="ScoreCard" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=671b0b81-06e5-4e49-a8a4-c5c2f4b84041&autoAuth=true&ctid=fcb2b37b-5da0-466b-9b83-0014b67a7c78&navContentPaneEnabled=false&filterPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>
+                </div>
+                <h4 style="margin-top:3.3rem;">Mis Dashboards</h4>
+                <div class="row" id="dashboars_panel">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="dashboard_modal" tabindex="-1" >
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            
+            <div class="modal-body">
+                <div class="row" id="dashboard_modal_panel">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Compartir</button>
+                <button type="button" class="btn btn-danger" id="btn_close_dashboard_modal" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>
+
+<script>require(['Home']);</script>
