@@ -5,48 +5,7 @@
     string Department = users.get_user_department_code(HttpContext.Current.User.Identity.Name);
 }
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 10px;
-        padding: 0;
-        background: white;
-        overflow-y: visible;
-        overflow-x: hidden;
-    }
-    welcome-container {
-        opacity: 0;
-        animation: fadeIn 3s forwards;
-        animation-delay: 1s;
-        background-color: rgba(255, 255, 255, 0);
-        padding: 1px;
-        text-align: left;
-        margin: 20px 5px;
-    }
 
-    .welcome {
-        font-size: 50px !important;
-        font-weight: bold;
-        margin: 0;
-        color: rgb(0, 0, 0);
-    }
-    .banner-dashboard:hover {
-        transition: visibility 0s, opacity 0.5s linear;
-    }
-    .banner-dashboard {
-        visibility: hidden;
-        background-color: black;
-        opacity: 0;
-    }
-    .banner-dashboard:hover{
-            visibility: visible;
-            opacity: 0.3;
-        }
-    .title-banner {
-        color: white;
-        font-weight: bold;
-    }
-</style>
 <div class="section">
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
