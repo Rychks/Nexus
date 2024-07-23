@@ -4,5 +4,88 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="card shadow col-md-12">
+        <h5 class="card-header py-3">Audit Trail</h5>
+        <div class="card-body">
+            <div class="row" id="frm_AuditTrail">
+                <div class="form-group col-md-2">
+                    <label for="txtAuditTrail_Usuario">Usuario</label>
+                    <input type="text" class="form-control  form-control-sm" id="txtAuditTrail_Usuario" placeholder="Ingrese CWID o Nombre">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="txtAuditTrail_Accion">Acción</label>
+                    <select class="form-control form-control-sm" id="txtAuditTrail_Accion">
+                        <option value="-1" selected disabled>Seleccione</option>
+                        <option value="I">Inserción</option>
+                        <option value="M">Modificación</option>
+                        <option value="E">Eliminación</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="txtAuditTrail_Fecha" class="txt_Idioma_fecha">Fecha inicio</label>
+                    <input type="date" class="form-control form-control-sm" id="txtAuditTrail_Fecha1">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="txtAuditTrail_Fecha2" class="txt_Idioma_Del">Fecha fin:</label>
+                    <input type="date" class="form-control form-control-sm" id="txtAuditTrail_Fecha2">
+                </div>
+                <div class="form-group col-md-4" style="margin-top:2rem;">
+                    <a href="#" id="btnAuditTrail_Buscar" class="btn btn-info btn-icon-split btn-sm">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <span class="text">Buscar</span>
+                    </a>
+                    <a href="#" id="btnAuditTrail_Limpiar" class="btn btn-secondary btn-icon-split btn-sm">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-eraser"></i>
+                        </span>
+                        <span class="text">Limpiar Filtros</span>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div style="max-height:500px; overflow:auto">
+                        <table class="table table-sm table-hover" id="tblAuditTrail">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Usuario</th>
+                                    <th scope="col">Acción</th>
+                                    <th scope="col">Valor anterior</th>
+                                    <th scope="col">Valor actual</th>
+                                    <th scope="col">Justificación</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider text-center">
+                                <tr><td colspan="100%"><p class="text-center">No se encontraron registros</p></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="pgdAuditTrail">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info" data-paginado="Anterior"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
+                            <div class="btn-group">
+                                <select class="form-control text-center" style="width:80px !important" data-paginado="Paginas">
+                                    <option selected disabled value="-1">Página</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-info" data-paginado="Siguiente"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
 
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>require(['AuditTrail']);</script>

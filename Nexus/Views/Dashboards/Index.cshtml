@@ -3,13 +3,13 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="section">
-    <div class="section-header">
-        <h5>Adm. Dashboards</h5>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-dark">Administración de Dashboards</h6>
     </div>
-    <div class="section-body">
-        <div class="card card-primary">
-            <div class="card-body">
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row" id="frm_Dashboards">
                     <div class="form-group col-auto">
                         <label for="slcDasboard_department" class="form-label">Departamento</label>
@@ -41,9 +41,9 @@
                         <button type="button" class="btn btn-icon btn-sm btn-outline-success btn-left" id="btnDashboard_add"><i class="fa fa-plus"></i> Agregar Dashboard</button>
                     </div>
                 </div>
-                <div class="row ">
-                    <div style="max-height:18rem; overflow:auto">
-                        <table class="table table-sm table-hover table-responsive-sm" id="tblDashboards">
+                <div class="row">
+                    <div class="col-sm-12" style="overflow:auto">
+                        <table class="table table-hover table-sm table-bordered dataTable" cellspacing="0" role="grid" id="tblDashboards">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -60,24 +60,29 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="pgdDashboards">
-                        <div class="btn-group-sm">
-                            <button type="button" class="btn btn-sm btn-info" data-paginado="Anterior"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
-                            <div class="btn-group">
-                                <select class="form-control form-control-sm text-center" style="width:80px !important" data-paginado="Paginas">
-                                    <option selected disabled value="-1">Página</option>
-                                </select>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                            <div id="pgdDashboards">
+                                <div class="btn-group-sm">
+                                    <button type="button" class="btn btn-sm btn-info" data-paginado="Anterior"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
+                                    <div class="btn-group">
+                                        <select class="form-control form-control-sm text-center" style="width:80px !important" data-paginado="Paginas">
+                                            <option selected disabled value="-1">Página</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn btn-sm btn-info" data-paginado="Siguiente"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+                                </div>
                             </div>
-                            <button type="button" class="btn btn-sm btn-info" data-paginado="Siguiente"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-    
 </div>
+
 <!--MODAL UPSERT-->
 <div class="modal fade" id="mdlDashboards_Upsert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

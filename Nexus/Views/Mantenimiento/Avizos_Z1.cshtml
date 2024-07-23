@@ -4,71 +4,107 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="card">
-    <h5 class="card-header">Avisos Z1</h5>
-    <div class="card-body">
-        <h5 class="card-title">Upload File</h5>
-        <div class="row">
-            <div class="col-auto">
-                <input type="file" class="form-control" id="txtAvisos_z1_file" name="name" value="" />
-            </div>
-            <div class="col-auto">
-                <button type="button" class="btn btn-icon btn-success btn-left" id="btnAvisos_z1_file_save"><i class="fa fa-file-upload"></i> Upload</button>
-            </div>
-        </div>
-        <hr />
-        <h5 class="card-title">Information Filter</h5>
-        <div class="row" id="frm_Avisos_z1">
-            <div class="form-group col-auto">
-                <label for="txtAvisos_z1_number" class="form-label">Aviso</label>
-                <input type="text" class="form-control" id="txtAvisos_z1_number" placeholder="Enter Capa number">
-            </div>
-
-            <div class="form-group col-auto" style="margin-top: 23px">
-                <button type="button" class="btn btn-icon btn-primary btn-left" id="btnAvisos_z1_Search"><i class="fa fa-search"></i> Search</button>
-                <button type="button" class="btn btn-icon btn-outline-secondary btn-left" id="btnAvisos_z1_clean"><i class="fa fa-eraser"></i> Clean Filters</button>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div style="max-height:500px; overflow:auto">
-                <table class="table" id="tblAvisos_z1">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Centro coste</th>
-                            <th scope="col">Ubicac.técnica</th>
-                            <th scope="col">Aviso</th>
-                            <th scope="col">Fecha de aviso</th>
-                            <th scope="col">Clase de aviso</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Orden</th>
-                            <th scope="col">Modificado por</th>
-                            <th scope="col">Clase Trabajo</th>
-                            <th scope="col">Status Sistema</th>
-                            <th scope="col">Status Usuario</th>
-                            <th scope="col">Prioridad</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider text-center">
-                        <tr><td colspan="100%"><p class="text-center">No records found</p></td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div id="pgdAvisos_z1">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-info" data-paginado="Anterior"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
-                    <div class="btn-group">
-                        <select class="form-control text-center" style="width:80px !important" data-paginado="Paginas">
-                            <option selected disabled value="-1">Página</option>
-                        </select>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <a href="#collapseCard_PnoVencidos" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCard_PnoVencidos">
+                <h6 class="m-0 font-weight-bold text-dark">Importación de datos</h6>
+            </a>
+            <!-- Card Content - Collapse -->
+            <div class="collapse" id="collapseCard_PnoVencidos" style="">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label>Subir información</label>
+                            <input type="file" class="form-control form-control-sm" id="txtAvisos_z1_file" name="name" value="" />
+                        </div>
                     </div>
-                    <button type="button" class="btn btn-info" data-paginado="Siguiente"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+                    <div class="row">
+                        <div class="col-3 offset-9">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-icon btn-sm btn-success btn-left" id="btnAvisos_z1_file_save"><i class="fa fa-file-upload"></i> Upload</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info text-dark" id="pgbAvisos_z1_Import_progress"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
+
+<div class="row">
+    <div class="card shadow col-md-12">
+        <h6 class="card-header font-weight-bold text-dark py-3">Avisos Z1</h6>
+        <div class="card-body">
+            <div class="row" id="frm_OrdenesTrabajo">
+                <div class="form-group col-md-3">
+                    <label for="txtAvisos_z1_number" class="form-label">Aviso</label>
+                    <input type="text" class="form-control form-control-sm" id="txtAvisos_z1_number" placeholder="Enter Capa number">
+                </div>
+                <div class="form-group col-md-3" style="margin-top:2rem;">
+                    <a href="#" id="btnAvisos_z1_Search" class="btn btn-info btn-icon-split btn-sm">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <span class="text">Buscar</span>
+                    </a>
+                    <a href="#" id="btnAvisos_z1_clean" class="btn btn-secondary btn-icon-split btn-sm">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-eraser"></i>
+                        </span>
+                        <span class="text">Limpiar Filtros</span>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div style="max-height:500px; overflow:auto">
+                        <table class="table table-sm table-hover" id="tblAvisos_z1">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Centro coste</th>
+                                    <th scope="col">Ubicac.técnica</th>
+                                    <th scope="col">Aviso</th>
+                                    <th scope="col">Fecha de aviso</th>
+                                    <th scope="col">Clase de aviso</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Orden</th>
+                                    <th scope="col">Modificado por</th>
+                                    <th scope="col">Clase Trabajo</th>
+                                    <th scope="col">Status Sistema</th>
+                                    <th scope="col">Status Usuario</th>
+                                    <th scope="col">Prioridad</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider text-center">
+                                <tr><td colspan="100%"><p class="text-center">No records found</p></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="pgdAvisos_z1">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info" data-paginado="Anterior"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
+                            <div class="btn-group">
+                                <select class="form-control text-center" style="width:80px !important" data-paginado="Paginas">
+                                    <option selected disabled value="-1">Página</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-info" data-paginado="Siguiente"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>require(['Avisos_Z1']);</script>

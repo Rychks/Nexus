@@ -10,6 +10,7 @@ namespace Nexus.Models
         public string Message { get; set; }
         public string Type { get; set; }
         public string Error { get; set; }
+        public string Id { get; set; }
 
     }
 }

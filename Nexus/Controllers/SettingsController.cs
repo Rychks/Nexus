@@ -17,6 +17,9 @@ namespace Nexus.Controllers
         // GET: Settings
         Settings settings = new Settings();
         Clases.Users users = new Clases.Users();
+        Dasboards dasboards = new Dasboards();
+        NoficationModel noti = new NoficationModel();
+        AuditTrail audit = new AuditTrail();
         public ActionResult Index()
         {
             return View();
@@ -46,6 +49,65 @@ namespace Nexus.Controllers
                 Clases.ErrorLogger.Registrar(this, e.ToString());
             }
             return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult insert_user_settings(string id_dashboard)
+        {
+            try
+            {
+                string BYTOST = HttpContext.User.Identity.Name;
+                
+                string datos = settings.insert_user_settings(BYTOST, id_dashboard);
+                if (datos == "saved")
+                {
+                    noti.Message = "Dashboard añadido a su lista";
+                    noti.Type = "success";
+                    audit.insert_AuditTrail(BYTOST, "I", "N/A", "Se agrega dashboard", "N/A");
+                }
+                else
+                {
+                    noti.Message = "Se produjo un error inesperado al tratar de añadir el dashboard";
+                    noti.Type = "warning";
+                    noti.Error = datos;
+                }
+            }
+            catch (Exception e)
+            {
+                noti.Message = "Se produjo un error inesperado al tratar de añador el dashboard";
+                noti.Type = "warning";
+                noti.Error = e.Message;
+                Clases.ErrorLogger.Registrar(this, e.ToString());
+            }
+            return Json(noti, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult delete_user_settings(string id_dashboard)
+        {
+            try
+            {
+                string BYTOST = HttpContext.User.Identity.Name;
+
+                string datos = settings.delete_user_settings(BYTOST, id_dashboard);
+                if (datos == "saved")
+                {
+                    noti.Message = "Dashboard omitido de su lista";
+                    noti.Type = "success";
+                    audit.insert_AuditTrail(BYTOST, "I", "N/A", "Se agrega dashboard", "N/A");
+                }
+                else
+                {
+                    noti.Message = "Se produjo un error inesperado al tratar de omitir el dashboard";
+                    noti.Type = "warning";
+                    noti.Error = datos;
+                }
+            }
+            catch (Exception e)
+            {
+                noti.Message = "Se produjo un error inesperado al tratar de omitir el dashboard";
+                noti.Type = "warning";
+                noti.Error = e.Message;
+                Clases.ErrorLogger.Registrar(this, e.ToString());
+            }
+            return Json(noti, JsonRequestBehavior.AllowGet);
         }
     }
 }

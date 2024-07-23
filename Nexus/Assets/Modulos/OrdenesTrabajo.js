@@ -65,7 +65,7 @@
     function fn_get_OrdenesTrabajo(Pagina) {
         var number = $("#txtOrdenesTrabajo_number").val();
         if (number == "") { number = null; }
-        var Datos = { number: number, Index: Pagina };
+        var Datos = { orden: number, Index: Pagina };
         var accesoEditar = "";
         $.mostrarInfo({
             URLindex: "/OrdenesTrabajo/get_TotalPag_ordenes_trabajo",
