@@ -5,6 +5,7 @@
         fn_get_dashboard();
         $("#tblDashboards tbody").on('click', "a[data-registro=Editar]", function () {
             var ID = $(this).parents("tr").find("[data-registro=ID]").html();
+            $("#mdlDashboards_Upsert_title").html("Actualizar Dashboard")
             $.post("/Dashboards/get_Dashboard_info", { id_dashboard: ID }).done(function (res) {
                 if (res != "") {
                     $.each(res, function (i, item) {
@@ -27,6 +28,7 @@
             $("#txtDashboard_upsert_id_departamento").generarLista({ URL: "/Department/get_department_list"});
             $("#txtDashboard_upsert_id_dashboard_tipo").generarLista({ URL: "/Dashboards/get_list_dashboard_type"});
             $.auxFormulario.limpiarCampos({ Seccion: $("#frmDashboards_upsert") });
+            $("#mdlDashboards_Upsert_title").html("Registrar Dashboard")
             $("#mdlDashboards_Upsert").modal("show");
         })
         $("#btnDashboard_upsert_save").click(function () {
@@ -36,14 +38,7 @@
                 NoVacio: function () {
                     fn_upsert_dashboard()
                 },
-            });
-            //var existeArchivo = ($("#txtDashboard_upsert_img"))[0].files[0];
-            //console.log(existeArchivo);
-            //if (!existeArchivo) {
-            //    $.notiMsj.Notificacion({ Mensaje: "Por favor, Ingrese la información requerida", Tipo: "info", Error: null });
-            //} else {
-               
-            //}            
+            });        
         })
         $("#btnDashboards_clean").click(function () {
             $.auxFormulario.limpiarCampos({
@@ -76,8 +71,37 @@
                 $('#btnDashboards_clean').click();
             }
         });
-        
+        $("#tblDashboards tbody").on('click', "a[data-registro=Accesos]", function () {
+            var ID = $(this).parents("tr").find("[data-registro=ID]").html();
+            $("#mdlDashboards_access").modal("show");
+            //$.post("/Dashboards/get_Dashboard_info", { id_dashboard: ID }).done(function (res) {
+            //    if (res != "") {
+            //        $.each(res, function (i, item) {
+
+            //            $("#txtDashboard_upsert_id").val(item.id_dashboard);
+            //            $("#txtDashboard_upsert_titulo").val(item.title);
+            //            $("#txtDashboard_upsert_code_department").val(item.code_department);
+            //            $("#txtDashboard_upsert_link").val(item.link);
+            //            $("#txtDashboard_upsert_is_enable").val(item.is_enable);
+            //            $("#txtDashboard_upsert_id_departamento").generarLista({ URL: "/Department/get_department_list", Seleccion: item.id_department });
+            //            $("#txtDashboard_upsert_id_dashboard_tipo").generarLista({ URL: "/Dashboards/get_list_dashboard_type", Seleccion: item.id_dashboard_type });
+            //            $('#txtDashboard_upsert_img_preview').attr('src', '/Assets/img/Dashboards/' + item.previus_image);
+
+            //        });
+            //        $("#mdlDashboards_Upsert").modal("show");
+            //    }
+            //}).fail(function (error) { $.notiMsj.Notificacion({ Mensaje: $.CargarIdioma.Obtener_Texto('txt_Idioma_Mostrar_informacion_error'), Tipo: "danger", Error: error }); });
+        });
+        $("#slcDashboards_access_level").change(function () {
+            var option = $(this).val();
+            if (option != "-1") {
+                if (option == "2") {
+
+                }
+            }
+        })
     });
+
     function fn_get_department_department_code(id_department) {
         var url = "/Department/get_department_department_code";
         var data_post = { id_department: id_department };
@@ -148,7 +172,8 @@
         var Datos = { id_department: id_department, title: title, id_dashboard_type: id_dashboard_type, is_enable: is_enable, Index: Pagina };
         var Botones = '<div class="item-action dropdown"><a href="javascript:void(0)" data-toggle="dropdown" class="icon" title="Options"><i class="fas fa-bars" style="z-index:-99 !important;"></i></a>' +
             '<div class="dropdown-menu dropdown-menu-right">' +
-            '<a href="javascript:void(0)" class="dropdown-item" data-registro="Editar" style="font-family: Arial;"><i class="dropdown-icon fas fa-edit"></i>  Editar registro'+
+            '<a href="javascript:void(0)" class="dropdown-item" data-registro="Editar" style="font-family: Arial;"><i class="dropdown-icon fas fa-edit"></i>  Editar registro </a>'+
+           // '<a href="javascript:void(0)" class="dropdown-item" data-registro="Accesos" style="font-family: Arial;"><i class="dropdown-icon fa-solid fa-user-lock"></i>  Editar accesos </a>'+
             '</div></div>';
         var accesoEditar = "";
         $.mostrarInfo({
@@ -161,7 +186,7 @@
             Mostrar: function (i, item) {
                 var estatus = '<span class="badge badge-light">Activo</span>';
                 if (item.is_enable != "1") {
-                    estatus = '<span class="badge badge-light">inactivo</span>';
+                    estatus = '<span class="badge badge-light">Inactivo</span>';
                 } else {
                     estatus = '<span class="badge badge-light">Activo</span>';
                 }

@@ -30,6 +30,10 @@ namespace Nexus.Controllers
         {
             return View();
         }
+        public ActionResult GOALS_INDIC_PROD()
+        {
+            return View();
+        }
 
         public JsonResult import_avisos_Z1(HttpPostedFileBase archivo, string hoja)
         {
@@ -138,7 +142,7 @@ namespace Nexus.Controllers
                 //Logger("started creating datatable");
 
                 rangeRowFirst = rangeRowFirst + (hasHeader ? 1 : 0);
-                var colCount = rangeColLast - rangeColFirst;
+                var colCount = rangeColLast;
                 for (int rowNum = rangeRowFirst; rowNum <= rangeRowLast; rowNum++)
                 {
                     List<string> colValues = new List<string>();
@@ -191,7 +195,75 @@ namespace Nexus.Controllers
             }
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult import_GOALS_INDIC_PROD(HttpPostedFileBase archivo, string hoja)
+        {
+            DataTable TabGOALS_INDIC_PROD = new DataTable();
+            string msg = "";
+            try
+            {
+                string date = DateTime.Now.ToString("ddMMyyhhmmssff");
+                string path = Server.MapPath("~/Atach/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
 
+
+                string filename = Guid.NewGuid() + Path.GetExtension(archivo.FileName);
+                string filepath = "/Atach/" + filename;
+                archivo.SaveAs(Path.Combine(Server.MapPath("/Atach"), filename));
+                DataTable DatosExcel = GetDataTableFromExcel(filename);
+                TabGOALS_INDIC_PROD.Columns.Add(new DataColumn("fecha", typeof(string)));
+                TabGOALS_INDIC_PROD.Columns.Add(new DataColumn("linea", typeof(string)));
+                TabGOALS_INDIC_PROD.Columns.Add(new DataColumn("updt", typeof(string)));
+                TabGOALS_INDIC_PROD.Columns.Add(new DataColumn("pdt", typeof(string)));
+                TabGOALS_INDIC_PROD.Columns.Add(new DataColumn("tnr", typeof(string)));
+                TabGOALS_INDIC_PROD.Columns.Add(new DataColumn("oee", typeof(string)));
+                int numDatos = DatosExcel.Rows.Count;
+                foreach (DataRow fila in DatosExcel.Rows)
+                {
+
+                    string fecha = fila["Fecha"].ToString();
+                    string linea = fila["Línea"].ToString();
+                    string updt = fila["Objetivo UPDT"].ToString();
+                    string pdt = fila["Objetivo PDT"].ToString();
+                    string tnr = fila["Objetivo TNR"].ToString();
+                    string oee = fila["Objetivo OEE"].ToString();
+
+                    if (!string.IsNullOrEmpty(fecha))
+                    {
+                        fecha = fecha == "" || fecha == null || fecha == "#" ? null : fecha;
+                        linea = linea == "" || linea == null || linea == "#" ? null : linea;
+                        updt = updt == "" || updt == null || updt == "#" ? null : updt;
+                        pdt = pdt == "" || pdt == null || pdt == "#" ? null : pdt;
+                        tnr = tnr == "" || tnr == null || tnr == "#" ? null : tnr;
+                        oee = oee == "" || oee == null || oee == "#" ? null : oee;
+
+                        TabGOALS_INDIC_PROD.Rows.Add(fecha, linea, updt, pdt, tnr, oee);
+                       
+                    }
+                }
+                string guardado = manto.insert_GOALS_INDIC_PROD(TabGOALS_INDIC_PROD);
+                if (guardado == "saved")
+                {
+                    noti.Message = "Información guardada correctamente";
+                    noti.Type = "success";
+                }
+                else
+                {
+                    noti.Message = "An error occurred while trying to save the Information";
+                    noti.Type = "warning";
+                }
+            }
+            catch (Exception e)
+            {
+                noti.Message = "An error occurred while trying to save the Information";
+                noti.Type = "warning";
+                noti.Error = e.Message;
+                Clases.ErrorLogger.Registrar(this, e.ToString());
+            }
+            return Json(noti, JsonRequestBehavior.AllowGet);
+        }
         private string validaFecha(string fecha)
         {
             string fechaAux = "";

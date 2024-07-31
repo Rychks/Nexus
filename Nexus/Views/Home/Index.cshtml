@@ -21,10 +21,20 @@
         <div class="card shadow mb-4">            <!-- Card Body -->
             <div class="card-body">
                 <div class="row" style="">
-                    <div class="content-dashboard">
-                        <iframe class="iframe-dashboard" title="ScoreCard" src="https://app.powerbi.com/reportEmbed?reportId=671b0b81-06e5-4e49-a8a4-c5c2f4b84041&autoAuth=true&ctid=fcb2b37b-5da0-466b-9b83-0014b67a7c78&navContentPaneEnabled=false&filterPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>
+                    <div class="col-md-12">
+                        <div class="content-dashboard">
+                            <video autoplay class="iframe-dashboard">
+                                <source src="~/Assets/Video/Sitio Web Link en Bio Tecnología y Gaming Sencillo Azul Oscuro.mp4" type="video/mp4" />
+                            </video>
+                        </div>
                     </div>
-
+                    
+                    @*<div class="ratio ratio-21x9 content-dashboard">
+            <iframe class="iframe-dashboard" src="~/Assets/Video/Banner%20Pantalla%20Inicial.mp4" title="video" allowfullscreen></iframe>
+        </div>*@
+                    @*<div class="content-dashboard">
+            <iframe class="iframe-dashboard" title="ScoreCard" src="https://app.powerbi.com/reportEmbed?reportId=671b0b81-06e5-4e49-a8a4-c5c2f4b84041&autoAuth=true&ctid=fcb2b37b-5da0-466b-9b83-0014b67a7c78&navContentPaneEnabled=false&filterPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>
+        </div>*@
                 </div>
             </div>
         </div>
@@ -199,8 +209,12 @@
                 <div class="row" id="dashboard_modal_panel">
 
                 </div>
+                <div class="row" id="dashboard_modal_pnlGuide" style="display:none">
+
+                </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" id="btnDashboard_guide">Guia rapida</button>
                 <button type="button" class="btn btn-primary btn-sm">Compartir</button>
                 <button type="button" class="btn btn-danger btn-sm" id="btn_close_dashboard_modal" data-dismiss="modal">Cerrar</button>
             </div>

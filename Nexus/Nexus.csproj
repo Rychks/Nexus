@@ -4026,6 +4026,7 @@
     <Content Include="Assets\img\avatar\avatar-3.png" />
     <Content Include="Assets\img\avatar\avatar-4.png" />
     <Content Include="Assets\img\avatar\avatar-5.png" />
+    <Content Include="Assets\img\content-on-construction.png" />
     <Content Include="Assets\img\Dashboards\CAPAs.png" />
     <Content Include="Assets\img\Dashboards\default.png" />
     <Content Include="Assets\img\Dashboards\Eng, Americas Utilization.png" />
@@ -4033,6 +4034,7 @@
     <Content Include="Assets\img\Dashboards\Utilization Plan.png" />
     <Content Include="Assets\img\Dashboards\Árbol de Pérdidas.png" />
     <Content Include="Assets\img\N - 2.PNG" />
+    <Content Include="Assets\img\on-construction.png" />
     <Content Include="Assets\img\spinner-primary.svg" />
     <Content Include="Assets\img\spinner-white.svg" />
     <Content Include="Assets\img\spinner.svg" />
@@ -10293,6 +10295,7 @@
     <Content Include="Assets\Modulos\Capas.js" />
     <Content Include="Assets\Modulos\Dashboards.js" />
     <Content Include="Assets\Modulos\Equipments.js" />
+    <Content Include="Assets\Modulos\GOALS_INDIC_PROD.js" />
     <Content Include="Assets\Modulos\Home.js" />
     <Content Include="Assets\Modulos\OrdenesTrabajo.js" />
     <Content Include="Assets\Modulos\Pno_vencimiento.js" />
@@ -10774,6 +10777,7 @@
     <Content Include="Assets\V2\plugins\prismjs\js\prism.pack.js" />
     <Content Include="Assets\V2\plugins\prismjs\plugin.css" />
     <Content Include="Assets\V2\plugins\prismjs\plugin.js" />
+    <Content Include="Assets\Video\Sitio Web Link en Bio Tecnología y Gaming Sencillo Azul Oscuro.mp4" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -11678,6 +11682,7 @@
     <Content Include="Views\Equipments\Index.cshtml" />
     <Content Include="Views\Dashboards\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Mantenimiento\GOALS_INDIC_PROD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

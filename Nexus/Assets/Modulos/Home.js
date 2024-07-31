@@ -77,8 +77,14 @@
         $("#btn_close_dashboard_modal").click(function () {
             $("#dashboard_modal").modal('hide')
         })
+        $("#btnDashboard_guide").click(function () {
+            $("#dashboard_modal_panel").hide();
+            $("#dashboard_modal_pnlGuide").show();
+        });
         $("#dashboars_panel").on('click', "img", function () {
             $("#dashboard_modal_panel").empty();
+            $("#dashboard_modal_panel").show();
+            $("#dashboard_modal_pnlGuide").hide();
             let code_department = $("#id_department").val();
             var link_dashboard = $(this).attr('name')
             var type = $(this).attr('data-registro');
@@ -281,7 +287,7 @@
                     '<div class="col-md-3 ' + class_mt + '" style="">'
                     + '<div class="card preview-dash zoom show_dashboard_prev">'
                     + '<div class="card-body titulo-dashoard">'
-                    + '<h5 class="card-title">' + item.title + '</h5>'
+                    + '<h6 class="card-title">' + item.title + '</h6>'
                     + '<p class="card-text"></p>'
                     + '</div>'
                     + '<img class="card-img-bottom mx-auto d-block" src="/Assets/img/Dashboards/' + item.previus_image + '" data-registro="' + item.type + '" name="' + item.link + '"   alt="Imagen no disponible">'
@@ -302,7 +308,7 @@
                     +'<div class="card-body">'
                        + '<div class="row no-gutters align-items-center">'
                           + '<div class="col mr-2">'
-                           + '<div class="h5 mb-0 font-weight-bold text-gray-800">Nuevo Template</div>'
+            + '<div style="font-size:0.8vw" class="mb-0 font-weight-bold text-gray-800">Nuevo Template</div>'
                            + '</div>'
                             +'<div class="col-auto">'
                                +'<button class="btn"><i class="fas fa-plus fa-2x text-gray-300"></i></button>'
@@ -314,6 +320,7 @@
         var accesoEditar = "";
         $("#pnlHome_templates_table").empty();
         $("#pnlHome_templates_table").hide();
+        
         $.mostrarInfo({
             URLindex: "/DashboardTemplates/get_TotalPag_detail_user_templates",
             URLdatos: "/DashboardTemplates/get_detail_user_templates_table",
@@ -322,15 +329,18 @@
             Tabla: $("#pnlHome_templates_table"),
             Paginado: $("#pgdHome_templates_table"),
             Mostrar: function (i, item) {
+                var len = item.name_template.length;
+                var name_template = item.name_template;
+                if (len > 20) { name_template = item.name_template.substr(0, 17) + '...'; }
                 $("#pnlHome_templates_table").append(
-                    '<div class="col-md-2 zoom mb-4 plnHome_template_item">'
+                    '<div class="col-md-2 zoom mb-4 plnHome_template_item" title="' + item.name_template + '">'
                     + '<input type="type" style="display:none" data-registro="Name" name="name" value="' + item.name_template + '" />'
                     + '<input type="type" style="display:none"  data-registro="Id" name="name" value="' + item.id_template + '" />'
                     + '<div class="card border-left-info shadow h-100 py-2">'
                     + '<div class="card-body">'
                     + '<div class="row no-gutters align-items-center">'
                     + '<div class="col mr-2">'
-                    + '<div class="h5 mb-0 font-weight-bold text-gray-800">' + item.name_template + '</div>'
+                    + '<div style="font-size:0.8vw"  class="mb-0 font-weight-bold text-gray-800">' + name_template + '</div>'
                     + '</div>'
                     + '<div class="col-auto">'
                     + '<button class="btn"><i class="fas fa-chart-column fa-2x text-gray-300"></i></button>'

@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "GOALS_INDIC_PROD";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <a href="#collapseCard_GOALS_INDIC_PROD" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCard_GOALS_INDIC_PROD">
+                <h6 class="m-0 font-weight-bold text-dark">Importación de datos</h6>
+            </a>
+            <!-- Card Content - Collapse -->
+            <div class="collapse show" id="collapseCard_GOALS_INDIC_PROD" style="">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label>Subir información</label>
+                            <input type="file" class="form-control form-control-sm" id="txtGOALS_INDIC_PROD_file" name="name" value="" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 offset-9">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-icon btn-sm btn-success btn-left" id="btnGOALS_INDIC_PROD_file_save"><i class="fa fa-file-upload"></i> Upload</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info text-dark" id="pgbGOALS_INDIC_PROD_Import_progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>require(['GOALS_INDIC_PROD']);</script>

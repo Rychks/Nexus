@@ -8,25 +8,41 @@
     <img src="~/Assets/Bayer_Brand/Bayer-Logo2.png" alt="logo" style="display:none" width="100" class="shadow-light rounded-circle">
 </div>
 
-<div class="col-sm-4 offset-4">
-    <div class="card">
-        <img src="~/Assets/Bayer_Brand/Bayer-Logo.png" class="mx-auto d-block" height="170" width="170" alt="Alternate Text" />
-        <div class="card-body" style="margin-top:50px">
-            <form method="post" action="@Url.Action("IniciarSesion", "Login")" id="frmLogin_Login">
-                <div class="form-group">
-                    <label for="btnLogin_BYTOST" style="font-weight:bold">Cwid</label>
-                    <input id="btnLogin_BYTOST" name="BYTOST" type="text" class="form-control text-center" tabindex="1" autocomplete="off" autofocus placeholder="Enter CWID">
+
+<section class="section">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                <div class="login-brand">
+                    <img src="~/Assets/Bayer_Brand/Bayer-Logo.png" alt="logo" width="200" class="shadow-light rounded-circle">
                 </div>
-                <div class="form-group">
-                    <label for="txtLogin_ZNACKA" style="font-weight:bold" class="control-label">Password</label>
-                    <input id="txtLogin_ZNACKA" name="ZNACKA" type="password" class="form-control text-center" tabindex="2" placeholder="Enter password">
+
+                <div class="card card-primary">
+                    <div class="card-header"><h4>Login</h4></div>
+
+                    <div class="card-body">
+                        <form method="post" action="@Url.Action("IniciarSesion", "Login")" id="frmLogin_Login">
+                            <div class="form-group">
+                                <label for="btnLogin_BYTOST" style="font-weight:bold">Cwid</label>
+                                <input id="btnLogin_BYTOST" name="BYTOST" type="text" class="form-control text-center" tabindex="1" autocomplete="off" autofocus placeholder="Enter CWID">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtLogin_ZNACKA" style="font-weight:bold" class="control-label">Password</label>
+                                <input id="txtLogin_ZNACKA" name="ZNACKA" type="password" class="form-control text-center" tabindex="2" placeholder="Enter password">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" id="btnLogin_Entrar" tabindex="4">
+                                    Login
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-info btn-lg btn-block" tabindex="3" id="btnLogin_Entrar">Login</button>
+                <div class="simple-footer">
+                    Copyright &copy; @DateTime.Now.Year  All rights reserved. Bayer AG
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-    
-    <div class="simple-footer">Copyright &copy; @DateTime.Now.Year  All rights reserved. Bayer S.A. de C.V. CH Eng. Americas</div>
-</div>
+</section>

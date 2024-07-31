@@ -40,6 +40,13 @@ namespace Nexus.Controllers
                     auditTrail.insert_AuditTrail(BYTOST, "I", "N/A", "Login", "N/A");
                     return Redirect("~/Home/Index");
                 }
+                else if(estatus == 303)
+                {
+                    ViewBag.Mensaje = "The user has been deactivated";
+                    ViewBag.Tipo = "warning";
+                    auditTrail.insert_AuditTrail(BYTOST, "I", "N/A", "Failed Login Attempt", "The user has been deactivated");
+                    return RedirectToAction("Index", new { Mensaje = ViewBag.Mensaje, Tipo = ViewBag.Tipo });
+                }
                 else
                 {       
                     FormsAuthentication.SetAuthCookie(BYTOST.ToUpper(), false);
