@@ -11,7 +11,7 @@
             $("#txtAuditTrail_Fecha2").val("");
             fn_AuditTrail();
         });
-        $("#pgdAuditTrail").paginado({
+        $("#pgdAudit").paginado({
             Tabla: $("#tblAuditTrail"),
             Version: 2,
             Funcion: fn_AuditTrail
@@ -30,24 +30,28 @@
         if (accion == "Update" || accion == "Modificación") { accion = 'M'; }
         if (accion == "Insert" || accion == "Inserción") { accion = 'I'; }
         if (accion == "Delete" || accion == "Eliminación") { accion = 'E'; }
-        if (fecha1 != null && fecha2 == null) {
+        if (fecha1 !== null && fecha2 === null) {
             opc = 2;
-        } else {
+        } else if (fecha1 === null && fecha2 !== null) {
             opc = 1;
-        }
-        var Datos;
-        if (opc == 1) {
-            Datos = { Fecha1: fecha1, Fecha2: fecha2, Usuario: usuario, Accion: accion, index: Pagina }
         } else {
-            Datos = { Fecha1: fecha1, Fecha2: fecha1, Usuario: usuario, Accion: accion, index: Pagina };
+            opc = 3;
         }
+        var datos = { Fecha1: fecha1, Fecha2: fecha2, Usuario: usuario, Accion: accion, index: Pagina };
+        //if (opc === 1) {
+        //    Datos = { Fecha1: fecha2, Fecha2: fecha2, Usuario: usuario, Accion: accion, index: Pagina }
+        //} else if (opc === 3) {
+        //    Datos = { Fecha1: fecha1, Fecha2: fecha2, Usuario: usuario, Accion: accion, index: Pagina };
+        //} else {
+        //    Datos = { Fecha1: fecha1, Fecha2: fecha1, Usuario: usuario, Accion: accion, index: Pagina };
+        //}
         $.mostrarInfo({
             URLindex: "/AuditTrail/get_TotalPag_AuditTrail",
             URLdatos: "/AuditTrail/get_audittrail_table",
-            Datos: Datos,
+            Datos: datos,
             Version: 2,
             Tabla: $("#tblAuditTrail"),
-            Paginado: $("#pgdAuditTrail"),
+            Paginado: $("#pgdAudit"),
             Mostrar: function (i, item) {
                 var Accion = "";
                 if (item.Accion == "I") {

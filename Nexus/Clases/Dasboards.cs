@@ -180,7 +180,7 @@ namespace Nexus.Clases
             return dt;
         }
         public string upsert_dashboards(string id_dashboard, string link, string title, string id_department, string code_department, string is_enable, 
-            string previus_image, string id_dashboard_type)
+            string previus_image, string id_dashboard_type,string guia)
         {
             var msg = "";
             try
@@ -199,6 +199,7 @@ namespace Nexus.Clases
                     cmd.Parameters.Add("@is_enable", SqlDbType.Int).Value = is_enable;
                     cmd.Parameters.Add("@previus_image", SqlDbType.VarChar).Value = previus_image;
                     cmd.Parameters.Add("@id_dashboard_type", SqlDbType.Int).Value = id_dashboard_type;
+                    cmd.Parameters.Add("@guia", SqlDbType.VarChar).Value = guia;
  
                     SqlDataAdapter adp = new SqlDataAdapter(cmd);
                     adp.Fill(dt);

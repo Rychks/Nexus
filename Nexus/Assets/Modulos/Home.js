@@ -15,7 +15,14 @@
             }
             prevScrollTop = currentScrollTop
         });
-        
+        $("#btnDashboard_share").click(function () {
+            var body = 'dddddd';
+            var newWin = document.getElementById('printf').contentWindow;
+            newWin.document.write(body);
+            newWin.document.close(); //important!
+            newWin.focus(); //IE fix
+            newWin.print();
+        });
         $("#mdlHome_template_edit_pnl_dashboard").on("click", ".imagecheck-figure", function () {
             var id_dashboard = $(this).find("[data-registro=id_dashboard]").val();
 
@@ -71,29 +78,46 @@
             $("#slcTemplate_add").generarLista({ URL: "/DashboardTemplates/get_dashboards_templates_public_list" });
             $("#slcHome_opcion_template").val("-1")
             $("#pnlHome_modal_create_template").hide();
+            $("#txtTemplate_name").val(null);
             $("#pnlHome_modal_add_template").hide();
             $("#mdlHome_add_template").modal("show")
+        });
+        $("#btnHome_slideDown").click(function () {
+            $("#dashboars_panel").focusin();
         });
         $("#btn_close_dashboard_modal").click(function () {
             $("#dashboard_modal").modal('hide')
         })
+        $("#btnDashboard_guide_close").click(function () {
+            $("#dashboard_modal_panel").show();
+            $("#dashboard_modal_pnlGuide").hide();
+            $("#btnDashboard_guide_close").hide();
+        })
         $("#btnDashboard_guide").click(function () {
             $("#dashboard_modal_panel").hide();
             $("#dashboard_modal_pnlGuide").show();
+            $("#btnDashboard_guide_close").show();
         });
         $("#dashboars_panel").on('click', "img", function () {
+            var link_guia = $(this).parents("div.col-md-3").find("[data-registro=link_guia]").val();
+            $("#btnDashboard_guide").hide();
+            $("#btnDashboard_guide_close").hide();
+            if (link_guia != "") {
+                $("#btnDashboard_guide").show();
+                $("#ifrm_guia_link").attr('src', '/Assets/guia/Dashboards/' + link_guia)
+            }
             $("#dashboard_modal_panel").empty();
             $("#dashboard_modal_panel").show();
             $("#dashboard_modal_pnlGuide").hide();
-            let code_department = $("#id_department").val();
+            let code_department = $("#id_department").val();           
+            console.log(link_guia);
             var link_dashboard = $(this).attr('name')
             var type = $(this).attr('data-registro');
-            console.log(type);
             if (type == 1) {
                 $("#dashboard_modal_panel").append(
                     '<div class="col-lg-12">'
                     + '<div class="content-dashboard-modal">'
-                    + ' <iframe class="iframe-dashboard-modal" title="ScoreCard"  src="' + link_dashboard +'"&navContentPaneEnabled=false&filterPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>'
+                    + ' <iframe class="iframe-dashboard-modal" id="printf" name="printf" title="ScoreCard"  src="' + link_dashboard +'"&navContentPaneEnabled=false&filterPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>'
                     + '</div>'
                     + '</div>'
                 );
@@ -108,11 +132,8 @@
                     + '</div>'
                     + '</div>'
                 );
-            }
-           
-
+            }          
             $("#dashboard_modal").modal('show')
-            console.log($(this));
         });
         $(".section-button").click(function () {
             $('html, body').animate({
@@ -176,7 +197,7 @@
                 if (res > 0) {
                     $("#btnHome_template_menu_edit").show();
                 }
-                $.notiMsj.Notificacion({ Mensaje: res.Message, Tipo: res.Type });
+                //$.notiMsj.Notificacion({ Mensaje: res.Message, Tipo: res.Type });
             },
             error: function (error) {
                 $.notiMsj.Notificacion({ Mensaje: "Se produjo un error inesperado", Tipo: "danger", Error: error });
@@ -248,6 +269,7 @@
                     + '<input type="checkbox"  class="imagecheck-input">'
                     + '<figure style="" class="imagecheck-figure">'
                     + '<input type="text" data-registro="id_dashboard" style="display:none;" value="' + item.id_dashboard + '" />'
+                    + '<input type="text" data-registro="link_guia" style="display:none;" value="' + item.guia + '" />'
                     + '<img style="max-height:200px; min-height:200px; object-fit: contain;" src="/Assets/img/Dashboards/' + img + '" alt="Imagen no disponible" class="imagecheck-image mx-auto d-block">'
                     + '<p class="caption">' + item.title + '</p>'
                     + '</figure>'
@@ -291,6 +313,7 @@
                     + '<p class="card-text"></p>'
                     + '</div>'
                     + '<img class="card-img-bottom mx-auto d-block" src="/Assets/img/Dashboards/' + item.previus_image + '" data-registro="' + item.type + '" name="' + item.link + '"   alt="Imagen no disponible">'
+                    + '<input type="text" style="display:none" data-registro="link_guia" value="' + item.guia + '" /> '
                     + '</div>'
                     + '</div>'
                 )
@@ -453,6 +476,7 @@
                     + '<p class="card-text"></p>'
                     + '</div>'
                     + '<img class="card-img-bottom mx-auto d-block" src="/Assets/img/Dashboards/' + item.previus_image + '" data-registro="' + item.type + '" name="' + item.link + '"   alt="Imagen no disponible">'
+                    + '<input type="text" style="display:none" data-registro="link_guia" value="'+item.guia+'" /> '
                     + '</div>'
                     + '</div>'
                 )

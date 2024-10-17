@@ -119,8 +119,8 @@ namespace Nexus.Controllers
 
 
                 TabOrdenes.Columns.Add(new DataColumn("id_orden", typeof(int)));
-                TabOrdenes.Columns.Add(new DataColumn("orden", typeof(Int64)));
-                TabOrdenes.Columns.Add(new DataColumn("aviso", typeof(Int64)));
+                TabOrdenes.Columns.Add(new DataColumn("orden", typeof(string)));
+                TabOrdenes.Columns.Add(new DataColumn("aviso", typeof(string)));
                 TabOrdenes.Columns.Add(new DataColumn("ubicacion_tecnica", typeof(string)));
                 TabOrdenes.Columns.Add(new DataColumn("denominacion", typeof(string)));
                 TabOrdenes.Columns.Add(new DataColumn("texto_breve", typeof(string)));
@@ -148,7 +148,7 @@ namespace Nexus.Controllers
                     string autor = fila["Autor"].ToString();
                     string modificado_por = fila["Modificado por"].ToString();
                     string cl_actividad = ""; //fila["Cl.actividad PM"].ToString();
-                    string prioridad = fila[8].ToString();
+                    string prioridad = fila["Prioridad"].ToString();
                     string fecha_fin = fila["Fe.fin extrema"].ToString();
                     string fin_programado = fila["Fin programado"].ToString();                    
                     string fecha_inicio_real = fila["Fe.inicio real"].ToString();

@@ -1,30 +1,31 @@
 ﻿define(["jquery"], function ($) {
     $(document).ready(function () {
-        //fn_iniUsers()
-        $("#btnUsuarios_Limpiar").click(function () {
+        fn_iniUsers();
+        $("#btnUsers_clean").click(function () {
             $.auxFormulario.limpiarCampos({
-                Seccion: $("#frmUsuarios")
+                Seccion: $("#frm_Users")
             });
-            fn_Usuarios();
+            fn_get_user_table();
         });
         $("#btnUser_Add").click(function () {
             $("#slcUserN_rol").generarLista({ URL: "/Rol/get_roles_list" });
         });
-        $("#cbxUserN_status").click(function () {
-            if ($("#cbxUserN_status").prop("checked")) {
-                $("label[for='cbxUserN_status']").html('Active');
-            } else {
-                $("label[for='cbxUserN_status']").html('Inactive');
+        $("#slcUsers_is_enable").change(function () {
+            fn_get_user_table();
+        });
+        $("#slcUsers_department").change(function () {
+            fn_get_user_table();
+        })
+        $("#txtUsers_cwid,#txtUsers_fullname").on('keypress', function (e) {
+            if (e.which == 13) {
+                fn_get_user_table();
             }
         });
-        $("#cbxUserM_status").click(function () {
-            if ($("#cbxUserM_status").prop("checked")) {
-                $("label[for='cbxUserM_status']").html('Active');
-            } else {
-                $("label[for='cbxUserM_status']").html('Inactive');
+        $(document).on('keyup', function (e) {
+            if (e.key == "Escape") {
+                $('#btnUsers_clean').click();
             }
         });
-
         $("#btnUsuariosN_Guardar").click(function () {
             $.auxFormulario.camposVacios({
                 Seccion: $("#frmUserN"),
@@ -53,10 +54,10 @@
                 }
             });
         });
-        $("#btnUsuarios_Buscar").click(function () {
-            fn_Usuarios();
+        $("#btnUsers_Search").click(function () {
+            fn_get_user_table();
         });
-        $("#tblUsuarios table tbody").on('click', "a[data-registro=Editar]", function () {
+        $("#tblUsers table tbody").on('click', "a[data-registro=Editar]", function () {
             var ID = $(this).parents("tr").find("[data-registro=ID]").html();
             $.post("/Usuarios/obtenerUsuario", { ID: ID }).done(function (res) {
                 if (res != "") {
@@ -81,27 +82,27 @@
                 }
             }).fail(function (error) { $.notiMsj.Notificacion({ Mensaje: $.CargarIdioma.Obtener_Texto('txt_Idioma_Mostrar_informacion_error'), Tipo: "danger", Error: error }); });
         });
-        $("#pgdUsuarios").paginado({
-            Tabla: $("#tblUsuarios"),
+        $("#pgdUsers").paginado({
+            Tabla: $("#tblUsers"),
             Version: 2,
-            Funcion: fn_Usuarios
+            Funcion: fn_get_user_table
         });
     });
     function fn_iniUsers() {
-        fn_get_lists();
+        $("#slcUsers_department").generarLista({ URL: "/Department/get_department_list" });
         fn_get_user_table();
-        $.matrizAccesos.verificaAcceso({ Elemento: $("#btnUser_Add"), Url: "/Rol/verificarAcceso", FuncionId: 11 });
+        $.matrizAccesos.verificaAcceso({ Elemento: $("#btnUsers_add"), Url: "/Roles/verificarAcceso", FuncionId: 7 });
     }
     function fn_get_user_table(Pagina) {
-        var cwid = $("#txtUser_Cwid").val();
-        var name = $("#txtUser_Name").val();
-        var id_rol = $("#slcUser_Rol option:selected").val();
-        var status = $("#slcUser_status option:selected").val();
+        var cwid = $("#txtUsers_cwid").val();
+        var fullname = $("#txtUsers_fullname").val();
+        var department = $("#slcUsers_department option:selected").val();
+        var is_enable = $("#slcUsers_is_enable option:selected").val();
         if (cwid == "") { cwid = null; }
-        if (name == "") { name = null; }
-        var Datos = { cwid: cwid, name: name, id_rol: id_rol == -1 ? null : id_rol, status: status == -1 ? null : status, Index: Pagina };
+        if (fullname == "") { fullname = null; }
+        var Datos = { cwid: cwid, fullname: fullname, department: department == -1 ? null : department, is_enable: is_enable == -1 ? null : is_enable, Index: Pagina };
         var accesoEditar = "";
-        $.matrizAccesos.validaAcceso({ FuncionId: 12 })
+        $.matrizAccesos.validaAcceso({ FuncionId: 6 })
             .then(obj => {
                 if (obj.result > 0) {
                     accesoEditar = '<a href="javascript:void(0)" class="dropdown-item" data-registro="Editar"><i class="dropdown-icon fas fa-edit"></i>Edit</a>';
@@ -116,35 +117,30 @@
                     URLdatos: "/Users/get_users_table",
                     Datos: Datos,
                     Version: 2,
-                    Tabla: $("#tblUsuarios"),
-                    Paginado: $("#pgdUsuarios"),
+                    Tabla: $("#tblUsers"),
+                    Paginado: $("#pgdUsers"),
                     Mostrar: function (i, item) {
 
-                        var Activo = '<div class="badge badge-success">' + $.CargarIdioma.Obtener_Texto('txt_Idioma_Activo') + '</div>';
+                        var Activo = '<div class="badge badge-success">Activo</div>';
                         if (item.Activo == 0) {
-                            Activo = '<div class="badge badge-danger">' + $.CargarIdioma.Obtener_Texto('txt_Idioma_Inactivo') + '</div>';
+                            Activo = '<div class="badge badge-danger">Inactivo</div>';
                         }
 
                         //var Botones = '<button class="btn btn-icon btn-primary btnEditar" data-toggle="tooltip"  data-registro="Editar" data-placement="bottom" title="' + $.CargarIdioma.Obtener_Texto('txt_Idioma_Editar') + '" data-original-title="' + $.CargarIdioma.Obtener_Texto('txt_Idioma_Editar') + '"><i class="far fa-edit"></i></button>';
-                        $("#tblUsuarios").find("tbody").append(
+                        $("#tblUsers").find("tbody").append(
                             $('<tr>')
-                                .append($('<td data-registro="ID" style="display:none">').append(item.ID))
+                                .append($('<td data-registro="id_user" style="display:none">').append(item.id_user))
                                 .append($('<td>').append(item.RowNumber))
-                                .append($('<td>').append(item.CWID))
-                                .append($('<td>').append(item.Nombre))
-                                .append($('<td>').append(item.Correo))
-                                .append($('<td>').append(item.Rol))
-                                .append($('<td>').append(item.Departamento))
+                                .append($('<td>').append(item.cwid))
+                                .append($('<td>').append(item.fullname))
+                                .append($('<td>').append(item.email))
+                                .append($('<td>').append(item.department))
                                 .append($('<td>').append(Activo))
                                 .append($('<td>').append(Botones))
                         );
                     }
                 });
             }).catch(err => console.error(err));
-
-
-
-
     }
     function fn_get_lists() {
         $("#slcUser_Rol").generarLista({ URL: "/Rol/get_roles_list" });

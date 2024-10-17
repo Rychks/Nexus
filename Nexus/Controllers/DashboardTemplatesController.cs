@@ -45,6 +45,7 @@ namespace Nexus.Controllers
                         title = data["title"].ToString(),
                         type = data["id_dashboard_type"].ToString(),
                         previus_image = data["previus_image"].ToString(),
+                        guia = data["guia"].ToString()
                     });
                 }
             }

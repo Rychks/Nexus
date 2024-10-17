@@ -49,7 +49,7 @@
                 <div class="col-lg-12">
                     <div style="max-height:500px; overflow:auto">
                         <table class="table table-sm table-hover" id="tblAuditTrail">
-                            <thead>
+                            <thead class="text-dark font-weight-bold">
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Fecha</th>
@@ -61,31 +61,26 @@
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider text-center">
-                                <tr><td colspan="100%"><p class="text-center">No se encontraron registros</p></td></tr>
+                                <tr><td colspan="100%"><p class="text-center">No records found</p></td></tr>
                             </tbody>
                         </table>
                     </div>
-                    <div id="pgdAuditTrail">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-info" data-paginado="Anterior"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
+                    <div id="pgdAudit">
+                        <div class="btn-group-sm">
+                            <button type="button" class="btn btn-sm btn-info" data-paginado="Anterior"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
                             <div class="btn-group">
-                                <select class="form-control text-center" style="width:80px !important" data-paginado="Paginas">
+                                <select class="form-control form-control-sm text-center" style="width:80px !important" data-paginado="Paginas">
                                     <option selected disabled value="-1">Página</option>
                                 </select>
                             </div>
-                            <button type="button" class="btn btn-info" data-paginado="Siguiente"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-sm btn-info" data-paginado="Siguiente"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
 
     </div>
 
 </div>
-
-
 <script>require(['AuditTrail']);</script>

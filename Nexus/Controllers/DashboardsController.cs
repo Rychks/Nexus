@@ -26,18 +26,19 @@ namespace Nexus.Controllers
             return View();
         }
         public JsonResult upsert_dashboard(string id_dashboard, string link, string title, string id_department, string code_department, string is_enable,
-            HttpPostedFileBase img, string id_dashboard_type)
+            HttpPostedFileBase img,HttpPostedFileBase guia, string id_dashboard_type)
         {
             try
             {
                 string filename = "default.png";
+                string guiaFile = string.Empty;
                 string BYTOST = HttpContext.User.Identity.Name;
                 if (!string.IsNullOrEmpty(id_dashboard) ) 
                 {
                     filename = dasboards.get_dashboard_prev_img(id_dashboard);
                 }
                
-                if (Request.Files.Count > 0)
+                if (img != null)
                 {
                     //string filename = Guid.NewGuid() + Path.GetExtension(img.FileName);
                     filename = img.FileName;
@@ -46,7 +47,16 @@ namespace Nexus.Controllers
                     img.SaveAs(Path.Combine(Server.MapPath("/Assets/img/Dashboards/"), filename));                  
                 }
 
-                string datos = dasboards.upsert_dashboards(id_dashboard, link, title, id_department, code_department, is_enable, filename, id_dashboard_type);
+                if (guia != null)
+                {
+                    //string filename = Guid.NewGuid() + Path.GetExtension(img.FileName);
+                    guiaFile = guia.FileName;
+                    string tipo = Path.GetExtension(guia.FileName);
+                    //string filepath = "~/Assets/Adjuntos/img/Dashboards" + filename;
+                    guia.SaveAs(Path.Combine(Server.MapPath("/Assets/guia/Dashboards/"), guiaFile));
+                }
+
+                string datos = dasboards.upsert_dashboards(id_dashboard, link, title, id_department, code_department, is_enable, filename, id_dashboard_type, guiaFile);
                 if (datos == "guardado")
                 {
                     noti.Message = "Dashboard guardado correctamente";
@@ -132,7 +142,8 @@ namespace Nexus.Controllers
                         dashboard_type = data["dashboard_type"].ToString(),
                         insert_time_stamp = data["insert_time_stamp"].ToString(),
                         update_time_stamp = data["update_time_stamp"].ToString(),
-                        previus_image = data["previus_image"].ToString()
+                        previus_image = data["previus_image"].ToString(),
+                        guia = data["guia"].ToString()
                     });
                 }
             }
@@ -164,6 +175,7 @@ namespace Nexus.Controllers
                         dashboard_type = data["dashboard_type"].ToString(),
                         insert_time_stamp = data["insert_time_stamp"].ToString(),
                         update_time_stamp = data["update_time_stamp"].ToString(),
+                        guia = data["guia"].ToString()
                     });
                 }
             }

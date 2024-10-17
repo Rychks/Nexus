@@ -30,7 +30,7 @@
                 frmDatos.append("funcionId", Param.FuncionId);
                 $.ajax({
                     type: "POST",
-                    url: "/Rol/verificarAcceso",
+                    url: "/Roles/verificarAcceso",
                     contentType: false,
                     processData: false,
                     data: frmDatos,

@@ -18,6 +18,11 @@
                         $("#txtDashboard_upsert_id_departamento").generarLista({ URL: "/Department/get_department_list", Seleccion: item.id_department });
                         $("#txtDashboard_upsert_id_dashboard_tipo").generarLista({ URL: "/Dashboards/get_list_dashboard_type", Seleccion: item.id_dashboard_type });
                         $('#txtDashboard_upsert_img_preview').attr('src', '/Assets/img/Dashboards/' + item.previus_image);
+                        $("#txtDashboard_upsert_guia_link").hide();
+                        if (item.guia != "") {
+                            $("#txtDashboard_upsert_guia_link").attr('href', '/Assets/guia/Dashboards/' + item.guia)
+                            $("#txtDashboard_upsert_guia_link").show();
+                        }
 
                     });
                     $("#mdlDashboards_Upsert").modal("show");
@@ -34,7 +39,7 @@
         $("#btnDashboard_upsert_save").click(function () {
             $.auxFormulario.camposVacios({
                 Seccion: $("#frmDashboards_upsert"),
-                Excepciones: ['txtDashboard_upsert_id','txtDashboard_upsert_img'],
+                Excepciones: ['txtDashboard_upsert_id', 'txtDashboard_upsert_img','txtDashboard_upsert_guia'],
                 NoVacio: function () {
                     fn_upsert_dashboard()
                 },
@@ -125,6 +130,12 @@
         } else {
             frmDatos.append("img", ($("#txtDashboard_upsert_img"))[0].files[0]);
         }        
+        var guia = ($("#txtDashboard_upsert_guia"))[0].files[0];
+        if (!guia) {
+            frmDatos.append("guia", null);
+        } else {    
+            frmDatos.append("guia", ($("#txtDashboard_upsert_guia"))[0].files[0]);
+        }  
         frmDatos.append("id_dashboard_type", $("#txtDashboard_upsert_id_dashboard_tipo option:selected").val());
         $("#btnDashboard_upsert_save").addClass("btn-progress");
         $.ajax({

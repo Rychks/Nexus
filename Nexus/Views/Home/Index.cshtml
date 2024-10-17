@@ -20,11 +20,14 @@
     <div class="col-xl-12 col-lg-12">
         <div class="card shadow mb-4">            <!-- Card Body -->
             <div class="card-body">
+                <div class="row">
+                    <h1 class="m-0 font-weight-bold text-dark">Bienvenido</h1>
+                </div>
                 <div class="row" style="">
-                    <div class="col-md-12">
+                    <div class="col-md-12" >
                         <div class="content-dashboard">
                             <video autoplay class="iframe-dashboard">
-                                <source src="~/Assets/Video/Sitio Web Link en Bio Tecnología y Gaming Sencillo Azul Oscuro.mp4" type="video/mp4" />
+                                <source src="~/Assets/Video/Banner%20Inicial%20Nexus%20(4).mp4" type="video/mp4" />
                             </video>
                         </div>
                     </div>
@@ -35,6 +38,14 @@
                     @*<div class="content-dashboard">
             <iframe class="iframe-dashboard" title="ScoreCard" src="https://app.powerbi.com/reportEmbed?reportId=671b0b81-06e5-4e49-a8a4-c5c2f4b84041&autoAuth=true&ctid=fcb2b37b-5da0-466b-9b83-0014b67a7c78&navContentPaneEnabled=false&filterPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>
         </div>*@
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="align-content-center" align="center">
+                            <a class="btn btn-icon btn-lg animacion" href="#dashboars_panel"  id="btnHome_slideDown"><span class="fa fa-angles-down"></span></a>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -80,7 +91,7 @@
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
                         <div class="dropdown-header">Menu:</div>
                         <a class="dropdown-item" id="btnHome_template_menu_close">Cerrar template</a>
-                            <a class="dropdown-item" id="btnHome_template_menu_edit">Editar template</a>
+                        <a class="dropdown-item" style="display:none !important;" dissable id="btnHome_template_menu_edit">Editar template</a>
                         <a class="dropdown-item" id="btnHome_template_menu_remove">Remover template de la lista</a>
                     </div>
                 </div>
@@ -160,7 +171,7 @@
                         <label>Seleccione una opción</label>
                         <select class="form-control form-control-sm" id="slcHome_opcion_template">
                             <option value="-1" selected>Seleccione</option>
-                            <option value="0">Crear nuevo template</option>
+                            <option style="display:none" value="0">Crear nuevo template</option>
                             <option value="1">Agregar template existente</option>
                         </select>
                     </div>
@@ -210,12 +221,18 @@
 
                 </div>
                 <div class="row" id="dashboard_modal_pnlGuide" style="display:none">
-
+                    
+                    <div class="col-md-12">
+                        <div class="content-dashboard-modal">
+                            <iframe class="iframe-dashboard-modal" id="ifrm_guia_link" src="" frameborder="0" allowFullScreen="true"></iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
+                <button class="btn btn-danger btn-sm" id="btnDashboard_guide_close">Cerrar guia</button>
                 <button type="button" class="btn btn-secondary btn-sm" id="btnDashboard_guide">Guia rapida</button>
-                <button type="button" class="btn btn-primary btn-sm">Compartir</button>
+                <button type="button" class="btn btn-primary btn-sm" id="btnDashboard_share">Compartir</button>
                 <button type="button" class="btn btn-danger btn-sm" id="btn_close_dashboard_modal" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

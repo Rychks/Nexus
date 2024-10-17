@@ -12,6 +12,7 @@ namespace Nexus.Models
         public string code_department { get; set; }
 
         public string title { get; set; }
+        public string guia { get; set; }
         public string link { get; set; }
         public string type { get; set; }
         public int id_department { get; set; }
